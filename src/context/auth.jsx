@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "../api/axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const AuthContext = createContext({});
 
@@ -27,6 +28,7 @@ export const AuthProvider = ({ children }) => {
     try {
       await axios.post("/login", data);
       await getUser();
+      toast.success('ログインしました');
       navigate("/")
     } catch (e) {
       if (e.response.status === 422) {
@@ -40,6 +42,8 @@ export const AuthProvider = ({ children }) => {
     try {
       await axios.post("/register", data);
       await getUser();
+      toast.success('新規登録に成功しました');
+      toast.success('ログインしました');
       navigate("/");s
     } catch (e) {
       if (e.response.status === 422) {
@@ -51,6 +55,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     axios.post("/logout").then(() => {
       setUser(null);
+      toast.error('ログアウトしました')
     });
   };
 

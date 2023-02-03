@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import axios from '../api/axios';
 import InputError from '../components/InputError';
 import useAuthContext from '../context/auth';
@@ -37,6 +38,7 @@ const ResetPassword = () => {
     try {
       await axios.post('/reset-password', { email, token, password, password_confirmation});
       // setStatus(res.data.status);
+      toast.success('パスワードを変更しました');
       navigate('/login');
     }catch(e) {
       if(e.response.status === 422) {

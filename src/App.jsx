@@ -8,6 +8,8 @@ import GuestLayout from "./layouts/GuestLayout";
 import Header from "./components/Header";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
+import { ToastContainer, Zoom } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const { loading } = useAuthContext();
@@ -24,6 +26,10 @@ function App() {
   return (
     <div className="App">
       <Header />
+      <ToastContainer 
+        autoClose={3000}
+        transition={Zoom}
+      />
       <Routes>
         <Route element={<GuestLayout />}>
           <Route path="/login" element={<Login />}></Route>

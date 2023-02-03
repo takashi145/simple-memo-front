@@ -38,7 +38,7 @@ function App() {
           <Route path="/password-reset/:token" element={<ResetPassword />}></Route>
         </Route>
         <Route element={<AuthLayout />}>
-          <Route path="/" element={<Main />}></Route>
+          <Route path="/:id?" element={<Main />}></Route>
         </Route>
       </Routes>
     </div>

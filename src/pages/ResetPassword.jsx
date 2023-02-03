@@ -13,8 +13,6 @@ const ResetPassword = () => {
 
   const [password_confirmation, setPasswordConfirmation] = useState('');
 
-  // const [status, setStatus] = useState(null);
-
   const [errors, setErrors] = useState([]);
 
   const [searchParams] = useSearchParams();
@@ -33,11 +31,9 @@ const ResetPassword = () => {
     event.preventDefault();
     await csrf();
     setErrors([]);
-    // setStatus(null);
 
     try {
       await axios.post('/reset-password', { email, token, password, password_confirmation});
-      // setStatus(res.data.status);
       toast.success('パスワードを変更しました');
       navigate('/login');
     }catch(e) {

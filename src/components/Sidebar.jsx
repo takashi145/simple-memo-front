@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 function Sidebar({ items }) {
 
   const [open, setOpen] = useState(false);
+
+  const { id } = useParams();
 
   useEffect(() => {
     if (open) {
@@ -40,7 +42,7 @@ function Sidebar({ items }) {
                 to={`/${item.id}`} 
                 key={item.id} 
                 onClick={() => setOpen(false)}
-                className='block shadow h-24 bg-white p-3 mb-3 hover:cursor-pointer hover:ring-2'
+                className={`${item.id == id ? 'ring-4' : ''} block shadow h-24 bg-white p-3 mb-3 hover:cursor-pointer hover:ring-2`}
               >
                 <h3 className='text-lg text-gray-800'>{item.title}</h3>
                 <div className='flex justify-end items-end text-sm my-5 text-gray-600'>

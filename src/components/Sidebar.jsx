@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 function Sidebar({ items }) {
 
   const [open, setOpen] = useState(false);
 
   const { id } = useParams();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (open) {
@@ -17,7 +19,7 @@ function Sidebar({ items }) {
   
   return (
     <>
-      <button onClick={() => setOpen(true)} className="text-indigo-500 border border-indigo-300 hover:bg-indigo-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium shadow text-sm p-2.5 text-center inline-flex items-center mr-2 lg:ml-8">
+      <button onClick={() => setOpen(true)} className="absolute text-indigo-500 border border-indigo-300 hover:bg-indigo-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium shadow text-sm p-2.5 text-center inline-flex items-center mr-2 lg:ml-8">
         <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
       </button>
 
@@ -27,7 +29,7 @@ function Sidebar({ items }) {
             <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
         </button>
         <div className='mb-4'>
-          <button onClick={() => alert("a")} className='flex justify-center text-sm items-center text-white bg-indigo-400 hover:bg-indigo-600 w-full py-1.5 shadow rounded'>
+          <button onClick={() => (navigate('/'), setOpen(false))} className='flex justify-center text-sm items-center text-white bg-indigo-400 hover:bg-indigo-600 w-full py-1.5 shadow rounded'>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 mr-1.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
             </svg>

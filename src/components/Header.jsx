@@ -14,7 +14,7 @@ const Header = () => {
   }
 
   return (
-    <header>
+    <>
       <nav className="p-4 border-gray-200 shadow">
         <div className="container flex flex-wrap items-center justify-between mx-auto">
           <AppLogo />
@@ -39,7 +39,7 @@ const Header = () => {
           </div>
         </div>
       </nav>
-    </header>
+    </>
   )
 }
 

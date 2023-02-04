@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import axios from '../api/axios';
+import {axiosClient as axios } from '../api/axios';
 import InputError from '../components/InputError';
 import useAuthContext from '../context/auth';
 
@@ -50,7 +50,7 @@ const ResetPassword = () => {
           <form onSubmit={handleSubmit} className="mx-auto lg:w-1/3 md:w-2/3 bg-white rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0 relative z-10 shadow-md">
             <h2 className="text-gray-900 text-lg mb-3 font-medium title-font">パスワード再設定</h2>
             <div className="relative mb-4">
-              <label className="leading-7 text-sm text-gray-600">Email</label>
+              <label className="leading-7 text-sm text-gray-600">メールアドレス</label>
               <input 
                 type="email" 
                 id="email" 
@@ -63,7 +63,7 @@ const ResetPassword = () => {
               <InputError errors={errors.email} />
             </div>
             <div className="relative mb-4">
-              <label className="leading-7 text-sm text-gray-600">New Password</label>
+              <label className="leading-7 text-sm text-gray-600">新しいパスワード</label>
               <input 
                 type="password" 
                 id="password" 
@@ -76,7 +76,7 @@ const ResetPassword = () => {
               <InputError errors={errors.password} />
             </div>
             <div className="relative mb-8">
-              <label className="leading-7 text-sm text-gray-600">Password Confirm</label>
+              <label className="leading-7 text-sm text-gray-600">確認用パスワード</label>
               <input 
                 type="password" 
                 id="password_confirmation" 

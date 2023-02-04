@@ -10,7 +10,7 @@ const GuestLayout = () => {
       <Outlet />
     </>
   ) : (
-    <Navigate to='/' />
+    <Navigate to='/memo' />
   )
 }
 

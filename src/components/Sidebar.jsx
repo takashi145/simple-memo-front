@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import TimeDiff from '../utils/time-diff';
 
 function Sidebar({ items }) {
 
@@ -19,7 +20,7 @@ function Sidebar({ items }) {
   
   return (
     <>
-      <button onClick={() => setOpen(true)} className="absolute text-indigo-500 border border-indigo-300 hover:bg-indigo-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium shadow text-sm p-2.5 text-center inline-flex items-center mr-2 lg:ml-8">
+      <button onClick={() => setOpen(true)} className="absolute text-indigo-500 border border-indigo-300 hover:bg-indigo-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium shadow text-sm p-2.5 text-center inline-flex items-center mr-2">
         <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
       </button>
 
@@ -41,14 +42,14 @@ function Sidebar({ items }) {
           items.map((item) => {
             return (
               <Link 
-                to={`/${item.id}`} 
+                to={`/memo/${item.id}`} 
                 key={item.id} 
                 onClick={() => setOpen(false)}
-                className={`${item.id == id ? 'ring-4' : ''} block shadow h-24 bg-white p-3 mb-3 hover:cursor-pointer hover:ring-2`}
+                className={`${item.id == id ? 'shadow-none ring-4 ring-indigo-400 rounded' : ''} block shadow h-24 bg-white p-3 mb-3 hover:cursor-pointer hover:ring-2`}
               >
                 <h3 className='text-lg text-gray-800'>{item.title}</h3>
                 <div className='flex justify-end items-end text-sm my-5 text-gray-600'>
-                  <button className='text-red-400 hover:text-red-600'>削除</button>
+                  { TimeDiff(item.updated_at) }
                 </div>
               </Link>  
             )

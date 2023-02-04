@@ -10,11 +10,12 @@ import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import { ToastContainer, Zoom } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import NotFound from "./pages/NotFound";
 
 function App() {
   const { loading } = useAuthContext();
 
-  if(!loading) {
+  if(loading) {
     return (
       <div className="bg-gray-200 flex flex-col justify-center items-center h-screen">
         Loading...
@@ -38,8 +39,9 @@ function App() {
           <Route path="/password-reset/:token" element={<ResetPassword />}></Route>
         </Route>
         <Route element={<AuthLayout />}>
-          <Route path="/:id?" element={<Main />}></Route>
+          <Route path="/memo/:id?" element={<Main />}></Route>
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   )

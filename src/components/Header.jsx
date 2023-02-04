@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom';
 import useAuthContext from '../context/auth';
 import AppLogo from './AppLogo';
@@ -6,6 +6,8 @@ import AppLogo from './AppLogo';
 const Header = () => {
 
   const [open, setOpen] = useState(false);
+
+  const [hover, setHover] = useState(false);
 
   const { user, logout } = useAuthContext();
 
@@ -23,7 +25,34 @@ const Header = () => {
           </button>
           <div className={`${open ? '' : 'hidden'} w-full md:block md:w-auto`}>
             { user ? (
-              <button onClick={handleLogout} className='mt-3 md:mt-0 text-gray-600 hover:text-gray-800 hover:underline'>ログアウト</button>
+              <div className='mt-3 md:mt-0 flex flex-col md:flex-row md:items-center'>
+                <button 
+                  type="button" 
+                  onMouseEnter={() => setHover(true)} 
+                  onMouseLeave={() => setHover(false)} 
+                  className="cursor-default md:cursor-pointer mr-3 flex items-center font-medium text-gray-600 rounded-full"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-8 h-8 mr-1 hidden md:block text-indigo-400">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  <span className='text-sm md:hidden'>ユーザー：</span>
+                  { user.name }
+                </button>
+                {hover && (
+                  <div className='hidden md:block fixed bg-white mt-32 p-3 rounded shadow-lg'>
+                    <div className='text-sm'>{user.email}</div>
+                    <div className='border-t mt-2 pt-2 text-sm text-center text-indigo-500'>
+                      ログイン中
+                    </div>
+                  </div>
+                )}
+                <div className='md:hidden py-2 text-sm'>
+                  { user.email }
+                </div>
+                <div className="pt-3 md:pt-0 border-t md:border-none border-gray-300">
+                  <button onClick={() => handleLogout()} className="block p-2 text-sm text-gray-800 bg-gray-300 hover:bg-gray-400 shadow rounded">Sign out</button>
+                </div>
+              </div>
             ) : (
               <>
                 <div className='space-x-4 hidden md:block'>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
-import axios from '../api/axios';
+import { axiosClient as axios } from '../api/axios';
 import InputError from '../components/InputError';
 import useAuthContext from '../context/auth';
 
@@ -40,7 +40,7 @@ const ForgotPassword = () => {
               </div>
             ): null}
             <div className="relative mb-5">
-              <label className="leading-7 text-sm text-gray-600">Email</label>
+              <label className="leading-7 text-sm text-gray-600">メールアドレス</label>
               <input 
                 type="email" 
                 id="email" 
@@ -51,9 +51,9 @@ const ForgotPassword = () => {
               />
               <InputError errors={errors.email} />
             </div>
-            <button className="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Send Mail</button>
+            <button className="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">再設定メールを送信</button>
             <div className='mt-4 flex flex-col space-y-2'>
-              <Link to="/login" className='text-gray-500 hover:text-gray-800 hover:cursor-pointer hover:underline'>ログイン</Link>
+              <Link to="/login" className='text-gray-500 hover:text-gray-800 hover:cursor-pointer hover:underline'>ログインページへ戻る</Link>
             </div>
           </form>
         </div>

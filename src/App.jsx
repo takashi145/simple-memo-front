@@ -11,6 +11,7 @@ import ResetPassword from "./pages/ResetPassword";
 import { ToastContainer, Zoom } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import NotFound from "./pages/NotFound";
+import Home from "./pages/Home";
 
 function App() {
   const { loading } = useAuthContext();
@@ -33,6 +34,7 @@ function App() {
       />
       <Routes>
         <Route element={<GuestLayout />}>
+          <Route path="/" element={<Home />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/forgot-password" element={<ForgotPassword />}></Route>

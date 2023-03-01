@@ -1,5 +1,5 @@
-import { Routes, Route } from "react-router-dom"
-import Main from "./pages/Main"
+import { Routes, Route, useLocation } from "react-router-dom"
+import Memo from "./pages/Memo"
 import Login from './pages/Login';
 import Register from './pages/Register';
 import AuthLayout from "./layouts/AuthLayout";
@@ -12,6 +12,8 @@ import { ToastContainer, Zoom } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import NotFound from "./pages/NotFound";
 import Home from "./pages/Home";
+import MemoList from "./pages/MemoList";
+import { useEffect } from "react";
 
 function App() {
   const { loading } = useAuthContext();
@@ -41,7 +43,8 @@ function App() {
           <Route path="/password-reset/:token" element={<ResetPassword />}></Route>
         </Route>
         <Route element={<AuthLayout />}>
-          <Route path="/memo/:id?" element={<Main />}></Route>
+          <Route path="/memo" element={<MemoList />}></Route>
+          <Route path="/memo/:id" element={<Memo />}></Route>
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

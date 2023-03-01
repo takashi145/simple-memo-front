@@ -24,8 +24,8 @@ const Register = () => {
   return (
     <>
       <div className="text-gray-600 body-font relative">
-        <div className="container px-5 py-24 mx-auto flex">
-          <form onSubmit={handleRegister} className="mx-auto lg:w-1/3 md:w-2/3 bg-white rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0 relative z-10 shadow-md">
+        <div className="container px-32 py-8 mx-auto flex">
+          <form onSubmit={handleRegister} className="mx-auto lg:w-1/2 md:w-2/3 bg-white rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0 relative z-10 shadow-md">
             <h2 className="text-gray-700 text-2xl mb-3 font-medium title-font text-center">新規登録</h2>
             <div className="relative mb-4">
               <label className="leading-7 text-sm text-gray-600">ユーザー名</label>

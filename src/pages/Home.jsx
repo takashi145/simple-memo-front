@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom'
 const Home = () => {
   return (
     <div className='h-full'>
-      <div className='text-center mt-24 space-y-6 pb-32'>
+      <div className='text-center mt-12 space-y-6 pb-32'>
         <h1 className=' text-8xl text-gray-800 font-serif'>Memoru</h1>
-        <p className='text-2xl font-bold text-gray-700'>シンプルで簡単なメモアプリ</p>
+        <p className='text-2xl font-bold text-gray-700'>シンプルなメモアプリ</p>
         <div className='pt-14 text-center'>
           <Link 
             to="/login"

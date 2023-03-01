@@ -90,9 +90,10 @@ function Main() {
     <>
       <Sidebar 
         items={memos}
+        setItems={setMemos}
       />
       <div className='w-full flex justify-center'>
-        <form className='mx-3 mt-14 w-full md:w-5/6 lg:w-1/2'>
+        <form className='mx-3 mt-8 mb-12 w-full md:w-5/6 lg:w-1/2'>
           <div className='flex justify-end mb-4'>
             <button 
               type="button" 
@@ -103,7 +104,7 @@ function Main() {
                 text-green-500 border border-green-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2
               `}
             >
-              Save
+              保存
             </button>
             
             { id && (
@@ -113,7 +114,7 @@ function Main() {
                 disabled={loading}
                 className="shadow-lg text-red-500 hover:text-white border border-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
               >
-                Delete
+                削除
               </button>
             )}
           </div>
@@ -133,7 +134,7 @@ function Main() {
               theme="snow" 
               value={body} 
               onChange={setBody} 
-              className="h-96 max-h-screen bg-white" 
+              className="h-80 max-h-screen bg-white" 
               placeholder='メモ'
               modules={modules}
               formats={formats}

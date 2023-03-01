@@ -17,7 +17,7 @@ const Header = () => {
 
   return (
     <>
-      <nav className="p-4 border-gray-200 shadow">
+      <nav className="py-2 px-4 border-gray-200 shadow">
         <div className="container flex flex-wrap items-center justify-between mx-auto">
           <AppLogo />
           <button type="button" onClick={() => setOpen(!open)} className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
@@ -50,7 +50,7 @@ const Header = () => {
                   { user.email }
                 </div>
                 <div className="pt-3 md:pt-0 border-t md:border-none border-gray-300">
-                  <button onClick={() => handleLogout()} className="block p-2 text-sm text-gray-800 bg-gray-300 hover:bg-gray-400 shadow rounded">Sign out</button>
+                  <button onClick={() => handleLogout()} className="block p-2 text-sm text-gray-600 bg-gray-300 hover:bg-gray-400 shadow rounded">ログアウト</button>
                 </div>
               </div>
             ) : (

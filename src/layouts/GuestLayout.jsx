@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, Outlet, useParams } from 'react-router-dom';
 import useAuthContext from '../context/auth'
 
 const GuestLayout = () => {
@@ -10,7 +10,7 @@ const GuestLayout = () => {
       <Outlet />
     </>
   ) : (
-    <Navigate to='/memo' />
+    <Navigate to={`/memo`} />
   )
 }
 

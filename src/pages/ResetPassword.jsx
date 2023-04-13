@@ -5,6 +5,7 @@ import {axiosClient as axios } from '../api/axios';
 import InputError from '../components/InputError';
 import useAuthContext from '../context/auth';
 import { Input } from 'postcss';
+import Label from '../components/Label';
 
 const ResetPassword = () => {
   
@@ -51,7 +52,7 @@ const ResetPassword = () => {
           <form onSubmit={handleSubmit} className="mx-auto bg-white rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0 relative z-10 shadow-md">
             <h2 className="text-gray-900 text-lg mb-3 font-medium title-font">パスワード再設定</h2>
             <div className="relative mb-4">
-              <label className="leading-7 text-sm text-gray-600">メールアドレス</label>
+              <Label for="email" value="メールアドレス" />
               <Input
                 type="email" 
                 id="email" 
@@ -63,7 +64,7 @@ const ResetPassword = () => {
               <InputError errors={errors.email} />
             </div>
             <div className="relative mb-4">
-              <label className="leading-7 text-sm text-gray-600">新しいパスワード</label>
+              <Label for="password" value="パスワード" />
               <Input 
                 type="password" 
                 id="password" 
@@ -75,7 +76,7 @@ const ResetPassword = () => {
               <InputError errors={errors.password} />
             </div>
             <div className="relative mb-8">
-              <label className="leading-7 text-sm text-gray-600">確認用パスワード</label>
+              <Label for="password_confirmation" value="パスワード確認" />
               <Input 
                 type="password" 
                 id="password_confirmation" 

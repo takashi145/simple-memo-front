@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import InputError from '../components/InputError';
 import useAuthContext from '../context/auth';
-import AppLogo from '../components/AppLogo';
 import Input from '../components/Input';
+import Label from '../components/Label';
+import Button from '../components/Button';
 
 const Register = () => {
 
@@ -29,7 +30,7 @@ const Register = () => {
           <form onSubmit={handleRegister} className="mx-auto bg-white rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0 relative z-10 shadow-md">
             <h2 className="text-gray-700 text-2xl mb-3 font-medium title-font text-center">新規登録</h2>
             <div className="relative mb-4">
-              <label className="leading-7 text-sm text-gray-600">ユーザー名</label>
+              <Label for="username" value="ユーザー名" />
               <Input 
                 type="text" 
                 id="username" 
@@ -41,7 +42,7 @@ const Register = () => {
               <InputError errors={errors.name} />
             </div>
             <div className="relative mb-4">
-              <label className="leading-7 text-sm text-gray-600">メールアドレス</label>
+              <Label for="email" value="メールアドレス" />
               <Input
                 type="email" 
                 id="email" 
@@ -53,7 +54,7 @@ const Register = () => {
               <InputError errors={errors.email} />
             </div>
             <div className="relative mb-4">
-              <label className="leading-7 text-sm text-gray-600">パスワード</label>
+              <Label for="password" value="パスワード" />
               <Input 
                 type="password" 
                 id="password" 
@@ -65,18 +66,23 @@ const Register = () => {
               <InputError errors={errors.password} />
             </div>
             <div className="relative mb-8">
-              <label className="leading-7 text-sm text-gray-600">確認用パスワード</label>
+              <Label for="password_confirmation" value="パスワード確認" />
               <Input 
                 type="password" 
                 id="password_confirmation" 
                 name="password_confirmation" 
                 value={password_confirmation}
                 onChange={(e) => {setPasswordConfirmation(e.target.value)}}
-                placeholder="password"
               />
               <InputError errors={errors.password_confirmation} />
             </div>
-            <button className="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">新規登録</button>
+            <Button
+              type="submit"
+              disabled={!username || !email || !password || !password_confirmation}
+              className="text-white bg-indigo-500 hover:bg-indigo-600 text-lg"
+            >
+              新規登録
+            </Button>
             <div className='mt-4 flex flex-col space-y-2'>
               <Link to="/login" className=' text-gray-500 hover:text-gray-800 hover:cursor-pointer hover:underline'>既にアカウントをお持ちですか？ログイン</Link>
             </div>

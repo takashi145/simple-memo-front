@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import InputError from '../components/InputError';
 import useAuthContext from '../context/auth';
-import AppLogo from '../components/AppLogo';
 import Input from '../components/Input';
+import Label from '../components/Label';
+import Button from '../components/Button';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -25,7 +26,7 @@ const Login = () => {
           <form onSubmit={handleLogin} className="mx-auto bg-gray-50 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0 relative z-10 shadow-md">
             <h2 className="text-gray-700 text-2xl mb-3 font-medium title-font text-center">ログイン</h2>
             <div className="relative mb-4">
-              <label className="leading-7 text-sm text-gray-600">メールアドレス</label>
+              <Label value="メールアドレス" />
               <Input
                 type="email"
                 id="email"
@@ -36,7 +37,7 @@ const Login = () => {
               <InputError errors={errors.email} />
             </div>
             <div className="relative mb-6">
-              <label className="leading-7 text-sm text-gray-600">パスワード</label>
+              <Label value="パスワード" />
               <Input 
                 type="password" 
                 id="password" 
@@ -46,12 +47,13 @@ const Login = () => {
               />
               <InputError errors={errors.password} />
             </div>
-            <button 
+            <Button 
+              type="submit"
               disabled={!email || !password}
-              className="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+              className="text-white bg-indigo-500 hover:bg-indigo-600 text-lg"
             >
               ログイン
-            </button>
+            </Button>
             <div className='mt-4 flex flex-col space-y-2'>
               <Link to="/forgot-password" className='text-gray-500 hover:text-gray-800 hover:cursor-pointer hover:underline'>パスワードをお忘れですか?</Link>
               <Link to="/register" className='text-gray-500 hover:text-gray-800 hover:cursor-pointer hover:underline'>アカウントをお持ちではありませんか?新規登録</Link>

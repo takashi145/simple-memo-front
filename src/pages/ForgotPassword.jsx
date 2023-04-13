@@ -4,6 +4,7 @@ import { axiosClient as axios } from '../api/axios';
 import InputError from '../components/InputError';
 import useAuthContext from '../context/auth';
 import Input from '../components/Input';
+import Label from '../components/Label';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
@@ -41,9 +42,9 @@ const ForgotPassword = () => {
               </div>
             ): null}
             <div className="relative mb-5">
-              <label className="leading-7 text-sm text-gray-600">メールアドレス</label>
+              <Label for="email" value="メールアドレス" />
               <Input
-                type="email" 
+                type="email"
                 id="email" 
                 name="email"
                 value={email}

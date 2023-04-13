@@ -12,8 +12,6 @@ import { ToastContainer, Zoom } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import NotFound from "./pages/NotFound";
 import Home from "./pages/Home";
-import MemoList from "./pages/MemoList";
-import { useEffect } from "react";
 
 function App() {
   const { loading } = useAuthContext();
@@ -43,7 +41,8 @@ function App() {
           <Route path="/password-reset/:token" element={<ResetPassword />}></Route>
         </Route>
         <Route element={<AuthLayout />}>
-          <Route path="/memo" element={<MemoList />}></Route>
+          {/* <Route path="/memo" element={<MemoList />}></Route> */}
+          <Route path="/memo" element={<Memo />}></Route>
           <Route path="/memo/:id" element={<Memo />}></Route>
         </Route>
         <Route path="*" element={<NotFound />} />

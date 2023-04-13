@@ -8,6 +8,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import InputError from '../components/InputError';
 import DeleteDialog from '../components/DeleteDialog';
+import Input from '../components/Input';
 
 function Main() {
   const [loading, setLoading] = useState(false);
@@ -17,6 +18,7 @@ function Main() {
   const [memos, setMemos] = useState([]);
   const [errors, setErrors] = useState([]);
   const { id } = useParams();
+  
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,6 +27,7 @@ function Main() {
 
   useEffect(() => {
     getMemo();
+    localStorage.setItem("memo", id);
   }, [id]);
 
   const getMemos = async () => {
@@ -93,7 +96,7 @@ function Main() {
         setItems={setMemos}
       />
       <div className='w-full flex justify-center'>
-        <form className='mx-3 mt-8 mb-12 w-full md:w-5/6 lg:w-1/2'>
+        <form className='mx-3 mt-3 mb-12 w-full md:mx-16 lg:w-2/3'>
           <div className='flex justify-end mb-4'>
             <button 
               type="button" 
@@ -119,11 +122,10 @@ function Main() {
             )}
           </div>
           <div className="mb-6">
-              <input 
+              <Input 
                 type="text" 
                 value={title} 
                 onChange={(e) => setTitle(e.target.value)} 
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:outline-none focus:ring-2 block w-full p-3"
                 placeholder='タイトル' 
               />
               <InputError errors={errors.title} />
@@ -134,7 +136,7 @@ function Main() {
               theme="snow" 
               value={body} 
               onChange={setBody} 
-              className="h-80 max-h-screen bg-white" 
+              className="h-80 bg-white" 
               placeholder='メモ'
               modules={modules}
               formats={formats}

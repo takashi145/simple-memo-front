@@ -1,16 +1,22 @@
-import React from 'react'
-import { Navigate, Outlet, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import useAuthContext from '../context/auth'
 
 const GuestLayout = () => {
   const { user } = useAuthContext();
-  
+
+  const [memoId, setMemoId] = useState(localStorage.getItem("memo"));
+
   return !user ? (
     <>
       <Outlet />
     </>
   ) : (
-    <Navigate to={`/memo`} />
+    memoId && memoId != 'undefined' ? (
+      <Navigate to={`/memo/${memoId}`} replace={true} />
+    ) : (
+      <Navigate to={`/memo`} replace={true} />
+    )
   )
 }
 

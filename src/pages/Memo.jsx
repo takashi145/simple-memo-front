@@ -9,12 +9,14 @@ import { toast } from 'react-toastify';
 import InputError from '../components/InputError';
 import DeleteDialog from '../components/DeleteDialog';
 import Input from '../components/Input';
+import TimeDiff from '../utils/time-diff';
 
 function Main() {
   const [loading, setLoading] = useState(false);
   const [dialog, setDialog] = useState(false);
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
+  const [updated, setUpdated] = useState(null);
   const [memos, setMemos] = useState([]);
   const [errors, setErrors] = useState([]);
   const { id } = useParams();
@@ -22,7 +24,7 @@ function Main() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    getMemos();
+    getMemoList();
   }, []);
 
   useEffect(() => {
@@ -30,7 +32,7 @@ function Main() {
     localStorage.setItem("memo", id);
   }, [id]);
 
-  const getMemos = async () => {
+  const getMemoList= async () => {
     const res = await axios.get('/api/memo');
     setMemos(res.data.data);
   }
@@ -44,6 +46,7 @@ function Main() {
       const memo = res.data.data;
       setTitle(memo.title);
       setBody(memo.body);
+      setUpdated(memo.updated_at)
     }catch(e) {
       if(e.response.status === 404) {
         navigate('/memo')
@@ -58,7 +61,8 @@ function Main() {
     setErrors([]);
     try {
       if(id) {
-        await axios.put(`/api/memo/${id}`, { title, body });
+        const res = await axios.put(`/api/memo/${id}`, { title, body });
+        setUpdated(res.data.data.updated_at);
       }else {
         const res = await axios.post('/api/memo', { title, body });
         const new_memo = res.data.data;
@@ -95,8 +99,9 @@ function Main() {
         items={memos}
         setItems={setMemos}
       />
+
       <div className='w-full flex justify-center'>
-        <form className='mx-3 mt-3 mb-12 w-full md:mx-16 lg:w-2/3'>
+        <form className='mx-3 mt-8 mb-12 max-w-2xl'>
           <div className='flex justify-end mb-4'>
             <button 
               type="button" 
@@ -120,6 +125,9 @@ function Main() {
                 削除
               </button>
             )}
+          </div>
+          <div className='mr-3 text-end text-gray-600'>
+            最終更新日: {TimeDiff(updated)}
           </div>
           <div className="mb-6">
               <Input 

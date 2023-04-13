@@ -8,8 +8,7 @@ export const axiosClient = axios.create({
 axiosClient.interceptors.response.use(res => res, async error => {
   const guest_paths = ['/', '/login', '/register', '/forgot-password', '/password-reset'];
   const current_path = window.location.pathname;
-
-  if(guest_paths.find((p) => p === current_path)) {
+  if(guest_paths.find((p) => p === '/' + current_path.split('/')[0])) {
     return Promise.reject(error);
   }
 

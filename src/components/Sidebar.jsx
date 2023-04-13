@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { axiosClient as axios } from '../api/axios';
-import TimeDiff from '../utils/time-diff';
 
 function Sidebar({ items, setItems }) {
 
@@ -60,17 +59,22 @@ function Sidebar({ items, setItems }) {
         {
           items.map((item) => {
             return (
-              <Link 
-                to={`/memo/${item.id}`} 
-                key={item.id} 
-                onClick={() => setOpen(false)}
-                className={`${item.id == id ? 'shadow-none ring-4 ring-indigo-400 rounded' : ''} block shadow h-24 bg-white p-3 mb-3 hover:cursor-pointer hover:ring-2`}
-              >
-                <h3 className='text-lg text-gray-800'>{item.title}</h3>
-                <div className='flex justify-end items-end text-sm my-5 text-gray-600'>
-                  { TimeDiff(item.updated_at) }
+
+              item.id == id ? (
+                <div className="shadow-none ring-2 ring-indigo-400 rounded block h-24 bg-blue-100 p-3 mb-3">
+                  <h3 className='text-lg text-gray-800'>{item.title}</h3>
                 </div>
-              </Link>  
+              ): (
+                <Link 
+                  to={`/memo/${item.id}`} 
+                  key={item.id} 
+                  onClick={() => setOpen(false)}
+                  className={`block shadow h-24 bg-white p-3 mb-3 hover:cursor-pointer hover:ring-2`}
+                >
+                  <h3 className='text-lg text-gray-800'>{item.title}</h3>
+                </Link>  
+              )
+              
             )
           })
         }

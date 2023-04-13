@@ -19,7 +19,9 @@ export const AuthProvider = ({ children }) => {
     try {
       const { data } = await axios.get("/api/user");
       setUser(data);
-    }finally {
+    } catch(e) {
+      console.log(e.response.data.message)
+    } finally {
       setLoading(false);
     }
   };

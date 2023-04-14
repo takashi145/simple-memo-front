@@ -126,9 +126,13 @@ function Main() {
               </button>
             )}
           </div>
-          <div className='mr-3 text-end text-gray-600'>
-            最終更新日: {TimeDiff(updated)}
-          </div>
+
+          { id && (
+            <div className='mr-3 text-end text-gray-600'>
+              最終更新日: {TimeDiff(updated)}
+            </div>
+          )}
+          
           <div className="mb-6">
               <Input 
                 type="text" 

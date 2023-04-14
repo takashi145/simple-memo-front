@@ -9,7 +9,7 @@ const GuestLayout = () => {
 
   return !user ? (
     <div className="text-gray-600 body-font relative">
-      <div className="container px-5 md:py-12">
+      <div className="container px-5 md:py-12 mx-auto">
         <Outlet />
       </div>
     </div>
